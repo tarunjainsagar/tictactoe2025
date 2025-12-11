@@ -30,6 +30,8 @@ public class Game {
 
     private List<WinningStrategy> winningStrategy;
 
+    private boolean hasBot;
+
     public int getId() {
         return id;
     }
@@ -106,6 +108,15 @@ public class Game {
         return this;
     }
 
+    public boolean getHasBot() {
+        return hasBot;
+    }
+
+    public Game setHasBot(boolean hasBot) {
+        this.hasBot = hasBot;
+        return this;
+    }
+
     private Game() {
         /*
          * Making it impossible to directly create object of Game class
@@ -174,9 +185,15 @@ public class Game {
                                     new ColumnWinningStrategy(),
                                     new LeftDiagonalWinningStrategy(),
                                     new RightDiagonalWinningStrategy()))
-                    .setNextPlayerTurnIdx((int) (Math.random() * players.size()))
                     .setMoves(new ArrayList<>())
+                    .setHasBot(players.stream().anyMatch(p -> p.getPlayerType() == PlayerType.BOT))
                     .setWinner(null);
+
+            int totalPlayerSize = players.size();
+            if (game.getHasBot()) {
+                totalPlayerSize -= 1;
+            }
+            game.setNextPlayerTurnIdx((int) (Math.random() * totalPlayerSize));
 
             return game;
         }

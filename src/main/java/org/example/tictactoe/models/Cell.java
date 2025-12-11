@@ -60,4 +60,12 @@ public class Cell {
     public int getHumanReadableCellNumber(int dimension) {
         return this.getRow() * dimension + this.getCol() + 1;
     }
+
+    public Cell markFilled(Player player) {
+        this.setCellState(CellState.FILLED);
+        this.setPlayer(player);
+        this.setSymbol(player.getSymbol());
+        return this;
+    }
 }
+

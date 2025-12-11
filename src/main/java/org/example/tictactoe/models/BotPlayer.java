@@ -18,4 +18,12 @@ public class BotPlayer extends Player {
         this.botDifficultyLevel = botDifficultyLevel;
         this.botPlayingStrategy = BotPlayingFactory.getPlayingStrategy(botDifficultyLevel);
     }
+
+    public BotDifficultyLevel getBotDifficultyLevel() {
+        return botDifficultyLevel;
+    }
+
+    public BotPlayingStrategy getBotPlayingStrategy() {
+        return botPlayingStrategy;
+    }
 }
